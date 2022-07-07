@@ -8,7 +8,17 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from django.conf import settings
 
-SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+SCOPES = ['https://www.googleapis.com/auth/calendar']
+
+'''
+additional_scopes you can add 
+          'https://www.googleapis.com/auth/calendar.readonly',
+          'https://www.googleapis.com/auth/calendar.events',
+          'https://www.googleapis.com/auth/calendar.events.readonly',
+          'https://www.googleapis.com/auth/calendar.settings.readonly',
+          'https://www.googleapis.com/auth/userinfo.profile',
+          'https://www.googleapis.com/auth/plus.login'
+'''
 
 
 def calenderAPI(access_token):
@@ -56,4 +66,7 @@ def calenderAPI(access_token):
         return data
 
     except HttpError as error:
+        if error.status_code==403:
+            print(error)
+            return f"Error occured due to insufficent permission, Please reconfigure your API SCOPES"
         return f"Error Occurred: {error}" 

@@ -18,3 +18,9 @@ py manage.py runserver 8000
 
 **ENJOY**
 
+
+***Additional Info***
+Calender Insufficient Permission might occur due to lack of given scopes as needed or lack of scopes in your respective google app 
+
+check your access token validiting from :  https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=xxxxxx
+
