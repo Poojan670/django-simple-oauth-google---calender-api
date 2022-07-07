@@ -52,11 +52,12 @@ def calenderAPI(access_token):
                                               maxResults=10, singleEvents=True,
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
+        
 
         if not events:
             print('No upcoming events found.')
-            return
-
+            return "No Upcoming events found!"
+        
         # Prints the start and name of the next 10 events
         for event in events:
             data = {}
@@ -68,5 +69,5 @@ def calenderAPI(access_token):
     except HttpError as error:
         if error.status_code==403:
             print(error)
-            return f"Error occured due to insufficent permission, Please reconfigure your API SCOPES"
+            return "Error occured due to insufficent permission, Please reconfigure your API SCOPES"
         return f"Error Occurred: {error}" 
